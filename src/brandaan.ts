@@ -7,6 +7,7 @@ export class Brandaan extends PIXI.AnimatedSprite {
     private xSpeed: number = 0
     private ySpeed: number = 0
     private frames: PIXI.Texture[][] = []
+    private previousFrame: number = -1
 
     constructor(game: Game, textures: PIXI.Texture[][], x: number, y: number) {
         super(textures[0])
@@ -33,7 +34,7 @@ export class Brandaan extends PIXI.AnimatedSprite {
             case "A":
             case "ARROWLEFT":
                 this.xSpeed = -3
-                this.scale.set(-3,3)
+                this.scale.set(-3, 3)
                 this.setFrames(1)
                 break
             case "D":
@@ -77,9 +78,21 @@ export class Brandaan extends PIXI.AnimatedSprite {
     }
 
     private setFrames(frame: number) {
-        this.textures = this.frames[frame]
-        this.loop = true
-        this.play()
+        console.log(this.previousFrame)
+        if (this.previousFrame != frame) {
+
+            console.log("set frames");
+
+            this.textures = this.frames[frame]
+
+            this.loop = true
+
+            this.play()
+
+            this.previousFrame = frame
+
+        }
+
     }
 
     public update(delta: number): void {
@@ -87,4 +100,5 @@ export class Brandaan extends PIXI.AnimatedSprite {
         this.x += this.xSpeed * delta
         this.y += this.ySpeed * delta
     }
+
 }
