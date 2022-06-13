@@ -37164,66 +37164,6 @@ class Brandaan extends _pixiJs.AnimatedSprite {
         this.loop = true;
         this.play();
         this.game.pixi.stage.addChild(this);
-        window.addEventListener("keydown", (e)=>this.onKeyDown(e)
-        );
-        window.addEventListener("keyup", (e)=>this.onKeyUp(e)
-        );
-    }
-    onKeyDown(e) {
-        switch(e.key.toUpperCase()){
-            case "A":
-            case "ARROWLEFT":
-                this.xSpeed = -3;
-                this.scale.set(-3, 3);
-                this.setFrames(1);
-                break;
-            case "D":
-            case "ARROWRIGHT":
-                this.xSpeed = 3;
-                this.scale.set(3);
-                this.setFrames(1);
-                break;
-            case "W":
-            case "ARROWUP":
-                this.ySpeed = -3;
-                this.setFrames(1);
-                break;
-            case "S":
-            case "ARROWDOWN":
-                this.ySpeed = 3;
-                this.setFrames(1);
-                break;
-        }
-    }
-    onKeyUp(e) {
-        switch(e.key.toUpperCase()){
-            case " ":
-                break;
-            case "A":
-            case "D":
-            case "ARROWLEFT":
-            case "ARROWRIGHT":
-                this.xSpeed = 0;
-                this.setFrames(0);
-                break;
-            case "W":
-            case "S":
-            case "ARROWUP":
-            case "ARROWDOWN":
-                this.ySpeed = 0;
-                this.setFrames(0);
-                break;
-        }
-    }
-    setFrames(frame) {
-        console.log(this.previousFrame);
-        if (this.previousFrame != frame) {
-            console.log("set frames");
-            this.textures = this.frames[frame];
-            this.loop = true;
-            this.play();
-            this.previousFrame = frame;
-        }
     }
     update(delta) {
         super.update(delta);
